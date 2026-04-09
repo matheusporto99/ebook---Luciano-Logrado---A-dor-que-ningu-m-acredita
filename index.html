@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Dor que Ninguém Acredita — E-book | Dr. Luciano Logrado</title>
+    <meta name="description" content="O guia definitivo para pacientes com dor crônica entenderem seu corpo e recuperarem a qualidade de vida.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #F7F5F0;
+            --bg-warm: #EFEBE2;
+            --white: #FFFFFF;
+            --dark: #131F22;
+            --dark-mid: #1A2C30;
+            --teal: #5BA4AC;
+            --teal-deep: #2B7A83;
+            --teal-light: rgba(91, 164, 172, 0.1);
+            --gold: #C6A94D;
+            --gold-soft: rgba(198, 169, 77, 0.12);
+            --text: #2A3C3F;
+            --text-mid: #4A6266;
+            --text-muted: #6E8589;
+            --border: #DDD8CC;
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --shadow-sm: 0 2px 4px rgba(19, 31, 34, 0.05);
+            --shadow-md: 0 4px 20px rgba(19, 31, 34, 0.08);
+            --r: 12px;
+            --r-lg: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--dark); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .content-narrow { max-width: 800px; margin: 0 auto; }
+
+        .text-teal { color: var(--teal); }
+        .text-gold { color: var(--gold); }
+        .italic { font-style: italic; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 36px;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--teal-deep);
+            color: var(--white);
+            box-shadow: 0 10px 25px -5px rgba(43, 122, 131, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--teal);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(43, 122, 131, 0.5);
+        }
+
+        .ribbon {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 12px;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .ribbon b { color: var(--gold); }
+        #timer { color: var(--gold); font-variant-numeric: tabular-nums; }
+
+        .hero {
+            background: var(--dark);
+            padding: 80px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 40%; height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(91, 164, 172, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content { padding-bottom: 80px; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--teal);
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 32px; height: 1px;
+            background: var(--teal);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .hero-lead {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 540px;
+            margin-bottom: 32px;
+        }
+
+        .hero-lead strong { color: var(--white); }
+
+        .hero-quotes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .hero-quote {
+            border-left: 3px solid var(--teal);
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .hero-pricing {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 28px;
+        }
+
+        .price-label { font-size: 1.6rem; color: rgba(255, 255, 255, 0.3); text-decoration: line-through; }
+        .price-value { font-family: var(--serif); font-size: 3.2rem; color: var(--teal); line-height: 1; }
+
+        .hero-3d-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        #three-canvas {
+            width: 100% !important;
+            height: 100% !important;
+            outline: none;
+            cursor: grab;
+        }
+
+        #three-canvas:active { cursor: grabbing; }
+
+        .section-padding { padding: 120px 0; }
+        
+        .section-title { font-size: clamp(2.2rem, 4vw, 2.8rem); margin-bottom: 48px; }
+
+        .q-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .q-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: var(--r);
+            border: 1px solid var(--border);
+            display: flex;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .q-card:hover { border-color: var(--teal); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+        .q-icon {
+            flex-shrink: 0;
+            width: 28px; height: 28px;
+            background: var(--teal-deep);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .amplify { background: var(--bg-warm); border-top: 1px solid var(--border); }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .pain-card {
+            background: var(--white);
+            padding: 32px 24px;
+            border-radius: var(--r);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .highlight-quote {
+            background: var(--gold-soft);
+            border-left: 6px solid var(--gold);
+            padding: 48px;
+            border-radius: 0 var(--r-lg) var(--r-lg) 0;
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        .story { background: var(--dark); color: rgba(255,255,255,0.7); }
+        .story-grid { display: grid; grid-template-columns: 1fr 350px; gap: 80px; align-items: center; }
+        .story h2 { color: var(--white); }
+        .story p { margin-bottom: 24px; font-size: 1.1rem; }
+        .story strong { color: var(--white); }
+
+        .cred-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .cred-item {
+            padding: 24px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--r);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
+        }
+
+        .cred-val { font-family: var(--serif); font-size: 1.8rem; color: var(--teal); line-height: 1.2; font-weight: 400; }
+        .cred-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; opacity: 0.7; font-weight: 600; color: var(--white); }
+
+        .story-img-wrap {
+            border-radius: var(--r-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        }
+        
+        .story-img-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .story-img-mobile {
+            display: none;
+            margin: 32px 0;
+        }
+
+        .story-img-desktop {
+            display: block;
+        }
+
+        .chapters-list { display: flex; flex-direction: column; gap: 20px; }
+        .chapter-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 28px;
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .chapter-card:hover { border-color: var(--teal); transform: translateX(10px); }
+
+        .ch-num {
+            width: 56px; height: 56px;
+            background: var(--teal-light);
+            color: var(--teal-deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .ch-title { font-weight: 700; font-size: 1.15rem; margin-bottom: 6px; display: block; color: var(--dark); }
+        .ch-desc { color: var(--text-muted); font-size: 1rem; }
+
+        .offer-section { background: var(--bg-warm); }
+        
+        .offer-card {
+            background: var(--white);
+            border-radius: var(--r-lg);
+            border: 1px solid var(--border);
+            padding: 72px;
+            position: relative;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--teal-deep), var(--gold));
+        }
+
+        .offer-header { margin-bottom: 40px; }
+        
+        .stack-list { margin-bottom: 48px; text-align: left; }
+        .stack-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 1rem;
+        }
+
+        .stack-price { color: var(--text-muted); text-decoration: line-through; }
+        .stack-total {
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 1.2rem;
+            padding-top: 24px;
+            color: var(--dark);
+        }
+
+        .pricing-box {
+            background: var(--bg);
+            border-radius: var(--r);
+            padding: 48px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .price-now-val { font-family: var(--serif); font-size: 4.5rem; color: var(--teal-deep); margin: 12px 0; line-height: 1; }
+        .price-now-val small { font-size: 1.8rem; vertical-align: middle; margin-right: 6px; }
+
+        .payment-methods {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 16px 0 24px;
+            font-size: 0.85rem;
+            color: var(--text-mid);
+        }
+
+        .payment-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .payment-divider {
+            width: 1px;
+            height: 14px;
+            background: var(--border);
+        }
+
+        .trust-footer {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-mid);
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guarantee {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            max-width: 440px;
+            margin: 48px auto 0;
+            text-align: left;
+            background: #fdfaf3;
+            padding: 24px;
+            border: 1px dashed var(--gold);
+            border-radius: var(--r);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .t-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: var(--r);
+            border: 1px solid var(--border);
+        }
+        .t-stars { color: var(--gold); margin-bottom: 16px; font-size: 0.8rem; letter-spacing: 2px; }
+        .t-text { font-style: italic; font-size: 0.95rem; color: var(--text); margin-bottom: 20px; line-height: 1.7; }
+        .t-user { display: flex; align-items: center; gap: 12px; }
+        .t-avatar { width: 40px; height: 40px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #999; font-size: 0.8rem; }
+        .t-name { font-weight: 700; font-size: 0.85rem; color: var(--dark); }
+        .t-info { font-size: 0.75rem; color: var(--text-muted); }
+
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-trigger {
+            width: 100%;
+            padding: 28px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: left;
+            color: var(--dark);
+        }
+        .faq-icon { font-size: 1.5rem; color: var(--teal); transition: transform 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; color: var(--text-mid); font-size: 1rem; }
+        .faq-item.active .faq-content { max-height: 300px; padding-bottom: 28px; }
+
+        .sticky-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(19, 31, 34, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 16px 24px;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .sticky-bar.visible { transform: translateY(0); }
+        .sticky-price-info { color: var(--white); text-align: right; line-height: 1.2; display: none; }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 64px; height: 64px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
+            z-index: 99;
+            transition: all 0.3s;
+        }
+        .whatsapp-btn:hover { transform: scale(1.1) rotate(5deg); }
+
+        footer { 
+            background: var(--dark); 
+            color: rgba(255,255,255,0.3); 
+            padding: 80px 0 140px;
+            text-align: center; 
+            font-size: 0.85rem; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+        }
+        footer strong { color: rgba(255,255,255,0.5); }
+        footer a { color: rgba(255,255,255,0.4); text-decoration: none; margin: 0 12px; transition: color 0.3s; }
+        footer a:hover { color: var(--teal); }
+
+        @media (max-width: 991px) {
+            .hero-grid, .story-grid { grid-template-columns: 1fr; }
+            .hero-content { padding-bottom: 60px; text-align: center; }
+            .hero-3d-container { height: 400px; order: -1; }
+            .hero::after { display: none; }
+
+            .hero-action {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-pricing {
+                justify-content: center;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+
+            .story-img-mobile {
+                display: block;
+            }
+
+            .story-img-desktop {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section-padding { padding: 80px 0; }
+            .pain-grid { grid-template-columns: 1fr; }
+            .offer-card { padding: 48px 24px; }
+            .cred-grid { grid-template-columns: 1fr; }
+            .price-now-val { font-size: 3.5rem; }
+            .sticky-bar { padding-bottom: calc(16px + env(safe-area-inset-bottom)); flex-direction: column; gap: 8px; }
+            .sticky-price-info { display: block; text-align: center; font-size: 0.8rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .trust-footer { flex-direction: column; gap: 12px; align-items: center; }
+
+            .q-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .q-card {
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            .q-icon {
+                align-self: center;
+            }
+
+            .testimonial-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .t-card {
+                width: 100%;
+                text-align: center;
+            }
+
+            .t-user {
+                justify-content: center;
+            }
+        }
+
+        [data-reveal] { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <div class="ribbon">
+        OFERTA DE LANÇAMENTO — <b>25% OFF</b> — TERMINA EM: <span id="timer">00:00:00</span>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">Dr. Luciano Logrado</div>
+                    <h1>Sua dor é real.<br>E ela tem <span class="text-teal italic">solução.</span></h1>
+                    <p class="hero-lead">O guia definitivo para pacientes com dor crônica entenderem seu corpo, validarem seus sintomas e <strong>recuperarem a autonomia de vida.</strong></p>
+                    
+                    <div class="hero-quotes">
+                        <div class="hero-quote">"Já fiz todos os exames e não aparece nada. Mas a dor continua."</div>
+                        <div class="hero-quote">"Me disseram que eu teria que aprender a viver com isso."</div>
+                    </div>
+
+                    <div class="hero-action">
+                        <div class="hero-pricing">
+                            <span class="price-label">R$ 58,90</span>
+                            <span class="price-value">R$ 29,90</span>
+                        </div>
+                        <a href="https://pay.kiwify.com.br/znApac3" class="btn btn-primary kiwify-checkout">QUERO ENTENDER MINHA DOR &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="hero-3d-container">
+                    <canvas id="three-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container content-narrow">
+            <h2 class="section-title">Este guia foi escrito para <span class="text-teal italic">você</span> se…</h2>
+            
+            <div class="q-grid">
+                <div class="q-card" data-reveal>
+                    <div class="q-icon">✓</div>
+                    <p>Você convive com dor há mais de 3 meses e sente que sua energia está esgotada.</p>
+                </div>
+                <div class="q-card" data-reveal>
+                    <div class="q-icon">✓</div>
+                    <p>Seus exames de imagem não mostram nada grave, mas a dor é incapacitante.</p>
+                </div>
+                <div class="q-card" data-reveal>
+                    <div class="q-icon">✓</div>
+                    <p>Você se sente frustrado(a) por não ser levado(a) a sério por amigos ou médicos.</p>
+                </div>
+                <div class="q-card" data-reveal>
+                    <div class="q-icon">✓</div>
+                    <p>Você tem medo do futuro e de como sua dor afetará sua independência.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding amplify">
+        <div class="container">
+            <div class="content-narrow" style="text-align: center; margin-bottom: 60px;">
+                <h2 class="section-title">A dor crônica não afeta apenas o corpo.<br><span class="text-gold italic">Ela drena sua vida.</span></h2>
+            </div>
+
+            <div class="pain-grid">
+                <div class="pain-card" data-reveal>
+                    <h4>Família</h4>
+                    <p>Passeios cancelados e a sensação de ser um "peso" para quem você ama.</p>
+                </div>
+                <div class="pain-card" data-reveal>
+                    <h4>Carreira</h4>
+                    <p>Faltas frequentes, perda de foco e o medo constante de ser demitido.</p>
+                </div>
+                <div class="pain-card" data-reveal>
+                    <h4>Finanças</h4>
+                    <p>Uma fortuna gasta em farmácias e suplementos que não funcionam.</p>
+                </div>
+                <div class="pain-card" data-reveal>
+                    <h4>Saúde Mental</h4>
+                    <p>O isolamento social e a perda da sua identidade para a dor.</p>
+                </div>
+            </div>
+
+            <div class="content-narrow">
+                <div class="highlight-quote" data-reveal style="text-align: center;">
+                    "A dor crônica não é um defeito de caráter ou falta de força.<br>
+                    É um sistema de alarme que perdeu a calibração.<br>
+                    E nós podemos recalibrá-lo."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding story">
+        <div class="container">
+            <div class="story-grid">
+                <div data-reveal>
+                    <h2 class="section-title">Ciência e Acolhimento</h2>
+                    <p>Sou Dr. Luciano Logrado e dediquei minha carreira a entender o que acontece quando a dor deixa de ser um sintoma e passa a ser a própria doença.</p>
+                    <p>Focado no Tratamento Avançado da Dor, minha missão é levar conhecimento de qualidade e acolhimento para que você possa retomar as rédeas da sua vida.</p>
+
+                    <div class="story-img-wrap story-img-mobile" data-reveal>
+                        <img src="DSCF9550.jpg" alt="Dr. Luciano Logrado">
+                    </div>
+                    
+                    <div class="cred-grid">
+                        <div class="cred-item">
+                            <span class="cred-val">+1.000</span>
+                            <span class="cred-lbl">Vidas Impactadas</span>
+                        </div>
+                        <div class="cred-item">
+                            <div style="font-size: 3rem; margin-bottom: 4px;">🇺🇸</div>
+                            <span class="cred-lbl" style="line-height: 1.1;">Atualizações nos EUA</span>
+                        </div>
+                        <div class="cred-item">
+                            <span class="cred-val" style="font-size: 1.5rem; font-family: var(--serif); text-transform: uppercase;">Tratamento Avançado</span>
+                            <span class="cred-lbl">da Dor</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-img-wrap story-img-desktop" data-reveal>
+                    <img src="DSCF9550.jpg" alt="Dr. Luciano Logrado">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container content-narrow">
+            <h2 class="section-title">O mapa para sua <span class="text-teal italic">recuperação</span></h2>
+            
+            <div class="chapters-list">
+                <div class="chapter-card" data-reveal>
+                    <div class="ch-num">01</div>
+                    <div>
+                        <span class="ch-title">A Biologia da Descrença</span>
+                        <p class="ch-desc">Por que sua dor é invisível aos exames e como o cérebro "aprende" a sentir dor.</p>
+                    </div>
+                </div>
+                <div class="chapter-card" data-reveal>
+                    <div class="ch-num">02</div>
+                    <div>
+                        <span class="ch-title">O Labirinto dos Tratamentos</span>
+                        <p class="ch-desc">O que funciona e o que é perda de tempo (e dinheiro) no tratamento da dor crônica.</p>
+                    </div>
+                </div>
+                <div class="chapter-card" data-reveal>
+                    <div class="ch-num">03</div>
+                    <div>
+                        <span class="ch-title">Ciência e Modernidade</span>
+                        <p class="ch-desc">Infiltrações guiadas e abordagens modernas explicadas de forma simples.</p>
+                    </div>
+                </div>
+                <div class="chapter-card" data-reveal>
+                    <div class="ch-num">04</div>
+                    <div>
+                        <span class="ch-title">Plano de Ação Diário</span>
+                        <p class="ch-desc">Como gerenciar crises e reprogramar seu sistema nervoso em casa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="section-title">Quem já mudou a <span class="text-teal italic">história</span> da sua dor</h2>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="t-card" data-reveal>
+                    <div class="t-stars">★★★★★</div>
+                    <p class="t-text">"Eu vivia com dor na lombar há 8 anos. O e-book me deu a clareza que nenhum médico deu. Finalmente entendi o que eu tinha e como tratar."</p>
+                    <div class="t-user">
+                        <div class="t-avatar">MS</div>
+                        <div>
+                            <span class="t-name">Mariana Silva</span>
+                            <span class="t-info">52 anos · Salvador-BA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-card" data-reveal>
+                    <div class="t-stars">★★★★★</div>
+                    <p class="t-text">"O Dr. Luciano é humano. O livro parece uma conversa no consultório. Senti esperança de novo após ler sobre as abordagens avançadas."</p>
+                    <div class="t-user">
+                        <div class="t-avatar">RP</div>
+                        <div>
+                            <span class="t-name">Ricardo P.</span>
+                            <span class="t-info">45 anos · São Paulo-SP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-card" data-reveal>
+                    <div class="t-stars">★★★★★</div>
+                    <p class="t-text">"Parei de gastar com remédios inúteis. O conhecimento que esse guia traz vale 10x o preço dele. Recomendo a todos."</p>
+                    <div class="t-user">
+                        <div class="t-avatar">LA</div>
+                        <div>
+                            <span class="t-name">Lúcia Andrade</span>
+                            <span class="t-info">61 anos · Feira de Santana-BA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding offer-section" id="comprar">
+        <div class="container content-narrow">
+            <div class="offer-card">
+                <div class="offer-header">
+                    <h2>Obtenha Acesso Imediato ao E-book</h2>
+                    <p style="margin-top: 10px;">Comece a transformar seu entendimento sobre a dor hoje mesmo.</p>
+                </div>
+
+                <div class="stack-list">
+                    <div class="stack-item">
+                        <span class="stack-name">E-book Completo (PDF de Alta Qualidade)</span>
+                        <span class="stack-price">R$ 39,90</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-name">Guia Extra: Diário da Dor Crônica</span>
+                        <span class="stack-price">R$ 19,00</span>
+                    </div>
+                    <div class="stack-item">
+                        <span class="stack-name">Acesso ao Grupo de Avisos Exclusivos</span>
+                        <span class="stack-price">BÔNUS</span>
+                    </div>
+                    <div class="stack-total">
+                        <span>Valor de Mercado:</span>
+                        <span style="text-decoration: line-through; opacity: 0.5;">R$ 58,90</span>
+                    </div>
+                </div>
+
+                <div class="pricing-box">
+                    <div class="price-now-val"><small>R$</small>29,90</div>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-item">
+                            <svg width="24" height="24" viewBox="0 0 512 512" fill="none">
+                                <path d="M256 0L512 256L256 512L0 256L256 0Z" fill="#00B388"/>
+                            </svg>
+                            <span>Pix</span>
+                        </div>
+                        <div class="payment-divider"></div>
+                        <div class="payment-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                            <span>Cartão de Crédito</span>
+                        </div>
+                    </div>
+
+                    <a href="https://pay.kiwify.com.br/znApac3" class="btn btn-primary kiwify-checkout" style="width: 100%;">SIM, QUERO MINHA SOLUÇÃO &rarr;</a>
+                    
+                    <div class="trust-footer">
+                        <div class="trust-item">✓ Acesso ilimitado</div>
+                        <div class="trust-item">✓ Compra 100% segura</div>
+                        <div class="trust-item">✓ Acesso imediato</div>
+                    </div>
+                </div>
+
+                <div class="guarantee">
+                    <div style="font-size: 2.2rem;">🛡️</div>
+                    <div>
+                        <p style="font-weight: 800; font-size: 1rem; margin-bottom: 4px; color: var(--gold);">Risco Zero: Garantia de 7 Dias</p>
+                        <p style="font-size: 0.85rem; color: var(--text-mid);">Se em 7 dias você sentir que este guia não é para você, devolvemos seu dinheiro sem burocracia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p><strong>Dr. Luciano Logrado — Médico que trata dor</strong></p>
+            <p>Rua Juracy Magalhães, 793 — Ponto Central, Feira de Santana – BA</p>
+            <p style="margin-top: 10px; font-size: 0.75rem; color: rgba(255,255,255,0.4);">
+                Log Serviços Médicos LTDA | CNPJ: 61.962.258/0001-63
+            </p>
+            <div style="margin: 24px 0;">
+                <a href="#">Privacidade</a>
+                <a href="#">Termos</a>
+                <a href="https://wa.me/5575999297886">Suporte</a>
+            </div>
+            <p>© 2026 Dr. Luciano Logrado. Este site não faz parte do Facebook ou Google.</p>
+        </div>
+    </footer>
+
+    <div class="sticky-bar" id="stickyBar">
+        <div class="sticky-price-info">
+            <b>R$ 29,90</b><br><small>Acesso Digital</small>
+        </div>
+        <a href="https://pay.kiwify.com.br/znApac3" class="btn btn-primary kiwify-checkout" style="width: 100%; max-width: 440px;">OBTER ACESSO AGORA &rarr;</a>
+    </div>
+
+    <a href="https://wa.me/5575999297886?text=Olá Dr. Luciano, quero saber mais sobre o e-book" class="whatsapp-btn" target="_blank">
+        <svg style="width: 32px; height: 32px; fill: white;" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script>
+        const init3D = () => {
+            const canvas = document.getElementById('three-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+            scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+            const dl = new THREE.DirectionalLight(0xffffff, 0.5);
+            dl.position.set(5, 5, 5);
+            scene.add(dl);
+
+            const bookGeometry = new THREE.BoxGeometry(3, 4, 0.5);
+            const materials = [
+                new THREE.MeshStandardMaterial({ color: 0xeeeeee }),
+                new THREE.MeshStandardMaterial({ color: 0x2B7A83 }),
+                new THREE.MeshStandardMaterial({ color: 0xeeeeee }),
+                new THREE.MeshStandardMaterial({ color: 0xeeeeee }),
+                new THREE.MeshStandardMaterial({ color: 0x2B7A83 }),
+                new THREE.MeshStandardMaterial({ color: 0x131F22 })
+            ];
+
+            const img = new Image();
+            img.onload = function() {
+                const tex = new THREE.Texture(img);
+                tex.needsUpdate = true;
+                materials[4].map = tex;
+                materials[4].needsUpdate = true;
+            };
+            img.onerror = function() {
+                const canvasCover = document.createElement('canvas');
+                canvasCover.width = 1024; 
+                canvasCover.height = 1400;
+                const ctx = canvasCover.getContext('2d');
+                ctx.fillStyle = '#131F22'; 
+                ctx.fillRect(0,0,1024,1400);
+                ctx.strokeStyle = '#C6A94D'; 
+                ctx.lineWidth = 20; 
+                ctx.strokeRect(60,60,904,1280);
+                ctx.fillStyle = '#ffffff'; 
+                ctx.font = 'bold 80px Instrument Serif'; 
+                ctx.textAlign = 'center';
+                ctx.fillText('A DOR QUE', 512, 400); 
+                ctx.fillText('NINGUÉM', 512, 520); 
+                ctx.fillText('ACREDITA', 512, 640);
+                const tex = new THREE.CanvasTexture(canvasCover);
+                materials[4].map = tex;
+                materials[4].needsUpdate = true;
+            };
+            img.src = 'image_1ed96d.jpeg';
+
+            const book = new THREE.Mesh(bookGeometry, materials);
+            scene.add(book);
+            camera.position.z = 8;
+            book.rotation.y = -0.5;
+
+            let mouseX = 0, mouseY = 0;
+            window.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth) - 0.5;
+                mouseY = (e.clientY / window.innerHeight) - 0.5;
+            });
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                book.rotation.y += (((mouseX * 0.8 - 0.5) - book.rotation.y) * 0.05);
+                book.rotation.x += (((mouseY * 0.5) - book.rotation.x) * 0.05);
+                book.position.y = Math.sin(Date.now() * 0.001) * 0.1;
+                renderer.render(scene, camera);
+            };
+            animate();
+        };
+
+        window.addEventListener('load', () => {
+            init3D();
+            startTimer(60 * 15, document.querySelector('#timer'));
+        });
+
+        function startTimer(duration, display) {
+            var timer = duration, h, m, s;
+            setInterval(() => {
+                h = parseInt(timer / 3600, 10); 
+                m = parseInt((timer % 3600) / 60, 10); 
+                s = parseInt(timer % 60, 10);
+                display.textContent = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
+                if (--timer < 0) timer = duration;
+            }, 1000);
+        }
+
+        window.addEventListener('scroll', () => {
+            const bar = document.getElementById('stickyBar');
+            window.scrollY > 800 ? bar.style.transform = 'translateY(0)' : bar.style.transform = 'translateY(100%)';
+        });
+
+        const reveal = () => {
+            document.querySelectorAll('[data-reveal]').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('revealed');
+            });
+        };
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        const KIWIFY_LINK = "https://pay.kiwify.com.br/znApac3";
+        document.querySelectorAll('.kiwify-checkout').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = KIWIFY_LINK;
+            });
+        });
+    </script>
+</body>
+</html>
